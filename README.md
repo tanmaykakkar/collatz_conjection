@@ -1,4 +1,4 @@
-# collatz_conjection
+# Collatz Conjection (3n + 1) Problem
 
 A gevent stream server, serving maximum cycle count among all collatz sequences for n in range of start-end, provided by user.
 
@@ -32,12 +32,15 @@ send range in format: start-end.
 
 Collatz conjecture states that for any number n, the below function f(n) will always boil down to 1, if you apply the same function over and over again to the previous result.
 
+```
 f(n) = {   
 3n+1, if n is odd,  
 n/2, if n is even  
 1, if n is 1  
 }  
+```
 
+```
 Eg: if n = 20, then:  
 f(20) = 20/2 = 10  
 f(10) = 10/2 = 5  
@@ -46,6 +49,7 @@ f(16) = 16/2 = 8
 f(8)  = 8/2 = 4  
 f(4)  = 4/2 = 2  
 f(2)  = 1  
+```
 
 The term cycle count refers to the length of the sequence of numbers generated. In the above case, cycle count for f(20) is 8.  
 
