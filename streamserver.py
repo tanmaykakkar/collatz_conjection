@@ -17,7 +17,7 @@ from collatz_conjection import max_cycle_count
 def serve(socket, address):
     logging.debug('New connection from %s:%s' % address)
     socket.sendall(b'Welcome to the collatz maximum cycle count server! Type quit to exit.\r\n')
-    socket.sendall(b'send range in format: start-end.\r\n')
+    socket.sendall(b'Send range in format: start-end.\r\n')
 
     f_obj = socket.makefile()
     while True:
@@ -30,11 +30,14 @@ def serve(socket, address):
         if line.strip().lower() == 'quit':
             logging.info("client quit")
             break
-
-        start, end = map(int, line.strip().split('-'))
-        cycle_count = max_cycle_count(start,end)
-        f_obj.write('collatz maximum cycle count is [{0}] for range {1}\n'.format(cycle_count, line))
-        f_obj.flush()
+        try:
+            if '-' in line:
+                start, end = map(int, line.strip().split('-'))
+                cycle_count = max_cycle_count(start,end)
+                f_obj.write('Collatz maximum cycle count is [{0}] for range {1}\n'.format(cycle_count, line))
+                f_obj.flush()
+        except ValueError as e:
+            logging.exception(e)
 
 if __name__ == '__main__':
     server = StreamServer((BIND_ADDRESS, PORT), serve)

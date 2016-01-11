@@ -22,7 +22,10 @@ def collatz_sequence(number, lookup_db={}):                                 # cr
         repetatively or found seq or part of seq in lookup_db
     '''
     while True:
-        if number in lookup_db:
+        if number < 1:
+            return []
+
+        elif number in lookup_db:
             col_sequence.extend(lookup_db[number])                          # adding to seq, partially found seq
             break
 
