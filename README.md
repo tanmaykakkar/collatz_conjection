@@ -2,14 +2,16 @@
 
 A gevent stream server, serving maximum cycle count among all collatz sequences for n in range of start-end, provided by user.
 
-To run server:
-# python streamserver.py
+## To run server:
+```{r, engine='bash', run_server}
+python streamserver.py
 2016-01-12 02:31:46,187 Starting collatz maximum cycle count server on port 16000
 2016-01-12 02:31:47,806 New connection from 127.0.0.1:33195
-
-To make request:
-1. Using telnet-
-# telnet localhost 16000
+```
+## To make request:
+### 1. Using telnet-
+```{r, engine='bash', run_server}
+telnet localhost 16000
 Trying 127.0.0.1...
 Connected to localhost.
 Escape character is '^]'.
@@ -17,11 +19,16 @@ Welcome to the collatz maximum cycle count server! Type quit to exit.
 send range in format: start-end.
 1-10000
 collatz maximum cycle count is [262] for range 1-10000
+```
 
-2. Using netcat- 
-# echo '1-1000000'| netcat localhost 16000
+
+### 2. Using netcat- 
+```{r, engine='bash', run_server}
+echo '1-1000000'| netcat localhost 16000
 Welcome to the collatz maximum cycle count server! Type quit to exit.
 send range in format: start-end.
+```
+# Problem-
 
 Collatz conjecture states that for any number n, the below function f(n) will always boil down to 1, if you apply the same function over and over again to the previous result.
 
