@@ -33,8 +33,8 @@ def serve(socket, address):
         try:
             if '-' in line:
                 start, end = map(int, line.strip().split('-'))
-                cycle_count = max_cycle_count(start,end)
-                f_obj.write('Collatz maximum cycle count is [{0}] for range {1}\n'.format(cycle_count, line))
+                cycle_count, number = max_cycle_count(start,end)
+                f_obj.write('Collatz maximum cycle count is [{0}] of number {1} for range {2}\n'.format(cycle_count, number, line))
                 f_obj.flush()
         except ValueError as e:
             logging.exception(e)

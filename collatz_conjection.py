@@ -44,4 +44,4 @@ def collatz_sequence(number, lookup_db={}):                                 # cr
     return col_sequence
 
 def max_cycle_count(start, end):
-        return max( [len(collatz_sequence(n)) for n in range(start,end)] )
+        return max( [(len(collatz_sequence(n)), n,)for n in range(start,end+1)] )
