@@ -25,7 +25,14 @@ def get_start_end():
 def collatz_client(host, port, times, pid):
     try:
         sock = get_socket((host,port))
+        # To receive welcome message
+        print sock.recv(1024)
+        print sock.recv(1024)
+
         while times > 0:
+            # printing on which term client is running now
+            print "Client id %s time %d-->" % (pid,times)
+
             start, end = get_start_end()
             query = "%s-%s\n"%(start,end)
             print ("Client id %s sent:"%(pid)),
@@ -50,7 +57,7 @@ def talk_to_server(host, port, pid):
 
 if __name__ == "__main__":
     host = "127.0.0.1"
-    port = 5000
+    port = 16000
     no_of_clients = int(raw_input("Enter the number of clients from this machine:"))
     print "Spawning %s clients"%(no_of_clients)
     start = time.time()
