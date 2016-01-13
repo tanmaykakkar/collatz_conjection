@@ -12,7 +12,14 @@ logging.basicConfig(
             ]
 )
 from gevent.server import StreamServer
+import threading
+
 from collatz_conjection import max_cycle_count
+
+def max_cycle_count_and_flush(start, end, f_obj):
+    cycle_count, number = max_cycle_count(start, end)
+    f_obj.write('Collatz maximum cycle count is [{0}] of number {1} for range {2}-{3}\n'.format(cycle_count, number, start, end))
+    f_obj.flush()
 
 def serve(socket, address):
     logging.debug('New connection from %s:%s' % address)
@@ -33,9 +40,7 @@ def serve(socket, address):
         try:
             if '-' in line:
                 start, end = map(int, line.strip().split('-'))
-                cycle_count, number = max_cycle_count(start,end)
-                f_obj.write('Collatz maximum cycle count is [{0}] of number {1} for range {2}\n'.format(cycle_count, number, line))
-                f_obj.flush()
+                threading.Thread(target=max_cycle_count_and_flush, args=(start, end, f_obj, socket)).start()
         except ValueError as e:
             logging.exception(e)
 
