@@ -40,7 +40,7 @@ def serve(socket, address):
         try:
             if '-' in line:
                 start, end = map(int, line.strip().split('-'))
-                threading.Thread(target=max_cycle_count_and_flush, args=(start, end, f_obj, socket)).start()
+                threading.Thread(target=max_cycle_count_and_flush, args=(start, end, f_obj)).start()
         except ValueError as e:
             logging.exception(e)
 

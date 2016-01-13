@@ -26,8 +26,8 @@ def collatz_client(host, port, times, pid):
     try:
         sock = get_socket((host,port))
         # To receive welcome message
-        print sock.recv(1024)
-        print sock.recv(1024)
+        # print sock.recv(1024)
+        # print sock.recv(1024)
 
         while times > 0:
             # printing on which term client is running now
