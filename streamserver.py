@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 BIND_ADDRESS = '0.0.0.0'
-PORT = 16000
+PORT = 1600
 
 import logging
 logging.basicConfig(
